@@ -10,6 +10,9 @@
 angular.module('dropeatApp')
   .controller('ShopprogressCtrl', function ($scope, $http) {
   	$scope.ETA = 10;
+    $scope.max = 200;
+    var i=0;
+    $scope.deliveryStatus;
 
   	$scope.max = 200;
     $scope.deliveryStatus;
@@ -36,6 +39,7 @@ angular.module('dropeatApp')
       }
       var types = ['success', 'info', 'warning', 'warning', 'warning', 'success'];
       var index=i;
+<<<<<<< HEAD
       $scope.stacked.push({
         value: i*20,
         type: types[index]
@@ -63,12 +67,19 @@ angular.module('dropeatApp')
 	  i=i+1;
   	};
 
-  	$scope.nextIndex();
-  	$scope.nextIndex();
+    $scope.updateApi = function() {
+      console.log('asaaaaa');
+      apiService.setProperty();
+      setInterval(function() {
+      $scope.deliveryStatus = apiService.getProperty();
+      $scope.updateProgressBar();
+      console.log('hämtad status', $scope.deliveryStatus);
+      }, 2 * 1000 /* interval is in milliseconds */ );
+    }
 
-  	$scope.getIndex = function () {
-  		return i;
-  	}
+    $scope.getIndex = function () {
+      return i;
+    }
 
 	var text = ['Drone is on the way', 'Waiting for customer to confirm', 'Returning to shop', 'Returned', 'Ready to fly again'];
   $scope.getText = function () {
