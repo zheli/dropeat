@@ -26,9 +26,9 @@ angular.module('dropeatApp')
 			//$http.get('http://localhost:5000/status')
 			//.success(function() { console.log('success: drone on the way') })
 			//.error(function() { console.log('error accessing the customer endpoint') })
-            $http({method : 'GET',url : 'http://localhost:5000/status'})
+            $http({method : 'GET',url : 'http://localhost:5000/shop_owner'})
             .success(function(data, status) {
-                console.log('status', data);
+                console.log('shop_owner', data);
             })
             .error(function(data, status) {
                 console.log('fail')
