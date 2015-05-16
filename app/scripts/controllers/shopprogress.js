@@ -10,56 +10,63 @@
 angular.module('dropeatApp')
   .controller('ShopprogressCtrl', function ($scope, $http) {
   	$scope.ETA = 10;
+    $scope.max = 200;
+    var i=0;
+    $scope.deliveryStatus;
 
-  	$scope.max = 200;
+    $scope.updateProgressBar = function() {
+      $scope.stacked = [];
+      var statusMessages = ['ready to fly', 'on the way', 'arrived', 'returning', 'returned'];
 
-  	$scope.random = function() {
-  	  var value = Math.floor((Math.random() * 100) + 1);
-  	  var type;
+      if ($scope.deliveryStatus == statusMessages[0]){
+        i=1;
+        console.log("id",i);
+      }
+      else if ($scope.deliveryStatus == statusMessages[1]) {
+        i=4;
+        console.log("id",i);
+      }
+      else if ($scope.deliveryStatus == statusMessages[2]) {
+        i=5;
+        console.log("id",i);
+      }
+      else if ($scope.deliveryStatus == statusMessages[3]) {
+        i=0;
+        console.log("id",i);
+      }
+      else if ($scope.deliveryStatus == statusMessages[4]) {
+        i=0;
+        console.log("id",i);
+      }
+      var types = ['success', 'info', 'warning', 'warning', 'warning', 'success'];
+      var index=i;
+        $scope.stacked.push({
+          value: i*20,
+          type: types[index]
+        });
+    //i=i+1;
+    };
 
-  	  if (value < 25) {
-  	    type = 'success';
-  	  } else if (value < 50) {
-  	    type = 'info';
-  	  } else if (value < 75) {
-  	    type = 'warning';
-  	  } else {
-  	    type = 'danger';
-  	  }
+    $scope.updateApi = function() {
+      console.log('asaaaaa');
+      apiService.setProperty();
+      setInterval(function() {
+      $scope.deliveryStatus = apiService.getProperty();
+      $scope.updateProgressBar();
+      console.log('hämtad status', $scope.deliveryStatus);
+      }, 2 * 1000 /* interval is in milliseconds */ );
+    }
 
-  	  $scope.showWarning = (type === 'danger' || type === 'warning');
+    $scope.getIndex = function () {
+      return i;
+    }
 
-  	  $scope.dynamic = value;
-  	  $scope.type = type;
-  	};
-  	$scope.random();
+  var text = ['Order confirmed', 'Waiting for restaurant', 'Food sent', 'Arrived at address', 'Delivered'];
+    $scope.getText = function () {
+      return text[i-2];
+    }
 
-  	var i=0;
-
-  	$scope.nextIndex = function() {
-  	  $scope.stacked = [];
-  	  var types = ['success', 'info', 'warning', 'warning', 'warning', 'success'];
-  	  var index=i;
-	      $scope.stacked.push({
-	        value: i*20,
-	        type: types[index]
-	      });
-	  i=i+1;
-  	};
-
-  	$scope.nextIndex();
-  	$scope.nextIndex();
-
-  	$scope.getIndex = function () {
-  		return i;
-  	}
-
-	var text = ['Order confirmed', 'Waiting for restaurant', 'Food sent', 'Arrived at address', 'Delivered'];
-  	$scope.getText = function () {
-  		return text[i-2];
-  	}
-
-  	$scope.dropFood = function () {
+    $scope.dropFood = function () {
         $http({method : 'GET',url : 'http://localhost:5000/drop_package'})
         .success(function(data, status) {
             console.log('status', data);
@@ -67,7 +74,7 @@ angular.module('dropeatApp')
         .error(function(data, status) {
             console.log('fail')
         });
-  	}
+    }
 
   });
 

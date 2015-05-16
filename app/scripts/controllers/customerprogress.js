@@ -10,11 +10,8 @@
 angular.module('dropeatApp')
   .controller('CustomerprogressCtrl', function ($scope, $http, apiService) {
   	$scope.ETA = 10;
-
   	$scope.max = 200;
-
   	var i=0;
-
     $scope.deliveryStatus;
 
   	$scope.updateProgressBar = function() {
@@ -26,19 +23,15 @@ angular.module('dropeatApp')
         console.log("id",i);
       }
       else if ($scope.deliveryStatus == statusMessages[1]) {
-        i=4;
+        i=3;
         console.log("id",i);
       }
       else if ($scope.deliveryStatus == statusMessages[2]) {
-        i=5;
+        i=4;
         console.log("id",i);
       }
       else if ($scope.deliveryStatus == statusMessages[3]) {
         i=5;
-        console.log("id",i);
-      }
-      else if ($scope.deliveryStatus == statusMessages[4]) {
-        i=6;
         console.log("id",i);
       }
   	  var types = ['success', 'info', 'warning', 'warning', 'warning', 'success'];
@@ -60,18 +53,13 @@ angular.module('dropeatApp')
       }, 2 * 1000 /* interval is in milliseconds */ );
     }
 
-    
-
-  	//$scope.updateProgressBar();
-  	// $scope.updateProgressBar();
-
   	$scope.getIndex = function () {
   		return i;
   	}
 
 	var text = ['Order confirmed', 'Waiting for restaurant', 'Food sent', 'Arrived at address', 'Delivered'];
   	$scope.getText = function () {
-  		return text[i-2];
+  		return text[i-1];
   	}
 
   	$scope.dropFood = function () {
