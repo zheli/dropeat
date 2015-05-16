@@ -22,7 +22,7 @@
     <div id="map"></div>
       
     <form name="resForm" class="form-horizontal" novalidate 
-    ng-submit="addDelivery(place.name)">
+    ng-submit="formSubmit(place.name)" ng-href="#/customerprogress" >
         <div class="form-group">
             <label for="resName" class="col-xs-2 control-label">Street adress</label>
             <div class="col-xs-10">
@@ -47,7 +47,7 @@
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
                 <button class="btn btn-success" 
-                ng-disabled="resForm.$invalid">Confirm delivery</button>
+                ng-disabled="resForm.$invalid" type="submit">Confirm delivery</button>
             </div>
         </div>
     </form>

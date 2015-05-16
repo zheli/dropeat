@@ -8,7 +8,7 @@
  * Controller of the dropeatApp
  */
 angular.module('dropeatApp')
-  .controller('DeliverCtrl', function ($scope, Map, deliveriesService) {
+  .controller('DeliverCtrl', function ($scope, $location, Map, deliveriesService) {
     $scope.place = {};
     
     $scope.search = function() {
@@ -39,8 +39,14 @@ angular.module('dropeatApp')
 		return hh + ":" + mm;
 	};
 
-    $scope.addDelivery = function(a) {
 
+
+	$scope.formSubmit = function (address) {
+		$location.path('/customerprogress');
+		$scope.addDelivery(address);
+	}
+
+    $scope.addDelivery = function(a) {
     	deliveriesService.setProperty(a, $scope.getDatetime());
     }
 

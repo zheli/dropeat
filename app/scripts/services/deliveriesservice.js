@@ -19,14 +19,20 @@ angular.module('dropeatApp')
             return deliveries;
         },
         setProperty: function(a,t) {
-            console.log("nu är jag här");
 			deliveries.push({
 				'address': a,
 				'time': t,
 			});
-			$http.get('http://localhost:5000/shop_owner')
-                .success(function() { console.log('success: drone on the way') })
-                .error(function() { console.log('error accessing the customer endpoint') })
+			//$http.get('http://localhost:5000/status')
+			//.success(function() { console.log('success: drone on the way') })
+			//.error(function() { console.log('error accessing the customer endpoint') })
+            $http({method : 'GET',url : 'http://localhost:5000/status'})
+            .success(function(data, status) {
+                console.log('status', data);
+            })
+            .error(function(data, status) {
+                console.log('fail')
+            });
         }
     };
   });
