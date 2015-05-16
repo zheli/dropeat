@@ -1,0 +1,39 @@
+<h1>Deliveries</h1>
+
+<a href="#/deliver" class="btn btn-primary">New Delivery</a>
+
+  <form class="form-inline" role="form" ng-submit="addDelivery()">
+
+    <div class="form-group">
+      <label for="deliveryAdress">Adress</label>
+      <input type="text" class="form-control" id="deliveryAdress"
+          ng-model="adress" />
+    </div>
+    <div class="form-group">
+      <label for="deliveryAdress">Time</label>
+      <input type="text" class="form-control" id="deliveryTime"
+          ng-model="time" />
+    </div>
+    <div class="form-group">
+      <label for="deliveryAdress">Duration</label>
+      <input type="text" class="form-control" id="deliveryDuration"
+          ng-model="duration" />
+    </div>
+    <div class="form-group">
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+    </div>
+  </form>
+
+  <table class="table">
+  <tr>
+    <th><a href="" ng-click="predicate = 'adress'; reverse=!reverse">Adress</a>
+    <th><a href="" ng-click="predicate = 'time'; reverse=!reverse">Time</a></th>
+    <th>Duration</th>
+  </tr>
+  <tr ng-repeat="deliveries in deliveries | orderBy:predicate:reverse">
+    <td>{{deliveries.adress}}</td>
+    <td>{{deliveries.time}}</td>
+    <td>{{deliveries.duration}}</td>
+  </tr>
+  </table>
+</div>
