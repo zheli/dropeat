@@ -1,6 +1,6 @@
 <div ng-init="updateApi()">
 
-<h1>Delivery status for shop owner</h1>
+<h1>Restaurant delivery status</h1>
 
 <progress><bar ng-repeat="bar in stacked track by $index" value="bar.value" max='100' type="{{bar.type}}"><span ng-hide="bar.value < 5">{{getText()}}</span></bar></progress>
 
