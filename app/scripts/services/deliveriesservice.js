@@ -8,7 +8,7 @@
  * Service in the dropeatApp.
  */
 angular.module('dropeatApp')
-  .service('deliveriesService', function (localStorageService) {
+  .service('deliveriesService', function (localStorageService, $http) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var deliveryHistory = localStorageService.get('deliveries');
 
@@ -24,6 +24,9 @@ angular.module('dropeatApp')
 				'address': a,
 				'time': t,
 			});
+			$http.get('http://localhost:5000/shop_owner')
+			.success(function() { console.log('success: drone on the way') })
+			.error(function() { console.log('error accessing the customer endpoint') })
         }
     };
   });

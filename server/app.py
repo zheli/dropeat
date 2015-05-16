@@ -26,7 +26,7 @@ def drop_package():
     if drone.status == 'arrived':
         drone.drop()
         drone.status = 'returning'
-        return 'dropped'
+        return drone.status
     return 'not arrived yet'
 
 @app.route('/reset', methods=['GET'])
