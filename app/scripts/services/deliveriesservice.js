@@ -25,8 +25,8 @@ angular.module('dropeatApp')
 				'time': t,
 			});
 			$http.get('http://localhost:5000/shop_owner')
-			.success(function() { console.log('success: drone on the way') })
-			.error(function() { console.log('error accessing the customer endpoint') })
+                .success(function() { console.log('success: drone on the way') })
+                .error(function() { console.log('error accessing the customer endpoint') })
         }
     };
   });

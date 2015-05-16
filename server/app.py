@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, request
 from hook_api.dropeat_drone import DroneHook
 
@@ -7,18 +8,21 @@ drone.status = 'ready to fly'
 
 @app.route('/status', methods=['GET'])
 def drone_status():
+    if drone.status == 'on the way':
+        current_time = datetime.now()
+        if (current_time - drone.timestamp).seconds > 5:
+            drone.status = 'arrived'
+    elif drone.status == 'returning':
+        current_time = datetime.now()
+        if (current_time - drone.timestamp).seconds > 5:
+            drone.status = 'returned'
     return drone.status
 
 @app.route('/shop_owner', methods=['GET'])
 def shop_owner():
     if drone.status == 'ready to fly':
         drone.status = 'on the way'
-    return drone.status
-
-@app.route('/shop_customer', methods=['GET'])
-def shop_customer():
-    if drone.status == 'on the way':
-        drone.status = 'arrived'
+        drone.timestamp = datetime.now()
     return drone.status
 
 @app.route('/drop_package', methods=['GET'])
@@ -31,8 +35,8 @@ def drop_package():
 
 @app.route('/reset', methods=['GET'])
 def reset():
-    drone.status = 'ready to fly'
     drone.reset()
+    drone.status = 'ready to fly'
     return 'reset'
 
 if __name__ == '__main__':

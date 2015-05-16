@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 from pyadrudino_serial import CommandManager
 
 duo_port = '/dev/cu.usbmodem141111'
@@ -10,18 +11,22 @@ class DroneHook(object):
     droped = False
     cm = CommandManager(duo_port, 9600)
     status = None
+    timestamp = None
 
     def __init__(self):
         self.cm.send_cmd(hook_degree)
         self.droped = False
+        self.timestamp = datetime.now()
 
     def drop(self):
         self.cm.send_cmd(release_degree)
         self.droped = True
+        self.timestamp = datetime.now()
 
     def reset(self):
         self.cm.send_cmd(hook_degree)
         self.droped = False
+        self.timestamp = datetime.now()
 
 
 def main():
