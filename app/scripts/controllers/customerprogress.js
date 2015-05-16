@@ -74,6 +74,16 @@ angular.module('dropeatApp')
   		return text[i-2];
   	}
 
+  	$scope.dropFood = function () {
+        $http({method : 'GET',url : 'http://localhost:5000/drop_package'})
+        .success(function(data, status) {
+            console.log('status', data);
+        })
+        .error(function(data, status) {
+            console.log('fail')
+        });
+  	}
+
   });
 
 
