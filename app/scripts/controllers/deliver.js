@@ -42,7 +42,7 @@ angular.module('dropeatApp')
 
 
 	$scope.formSubmit = function (address) {
-		$location.path('/customerprogress');
+		$location.path('/shopprogress');
 		$scope.addDelivery(address);
 	}
 
