@@ -8,7 +8,7 @@
  * Controller of the dropeatApp
  */
 angular.module('dropeatApp')
-  .controller('CustomerprogressCtrl', function ($scope) {
+  .controller('CustomerprogressCtrl', function ($scope, $http) {
   	$scope.ETA = 10;
 
   	$scope.max = 200;
@@ -57,6 +57,16 @@ angular.module('dropeatApp')
 	var text = ['Order confirmed', 'Waiting for restaurant', 'Food sent', 'Arrived at address', 'Delivered'];
   	$scope.getText = function () {
   		return text[i-2];
+  	}
+
+  	$scope.dropFood = function () {
+  	    $http({method : 'GET',url : 'http://localhost:5000/drop_package'})
+        .success(function(data, status) {
+            console.log('status', data);
+        })
+        .error(function(data, status) {
+            console.log('fail')
+        });
   	}
 
   });
