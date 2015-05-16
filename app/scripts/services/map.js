@@ -50,8 +50,19 @@ angular.module('dropeatApp')
         });
     }
 
-    this.addCircle = function(lat,lon) {
+    var infoWindow = null;
 
+   	this.initInfoWindow = function (lat, lan) {
+	    infoWindow = new google.maps.InfoWindow();
+	    infoWindow.setOptions({
+	        content: "Vapiano",
+	        position: new google.maps.LatLng(lat,lan),
+	    });
+	    infoWindow.open(this.map); 
+	}
+
+
+    this.addCircle = function(lat,lon) {
         var populationOptions = {
 	      strokeColor: '#FF0000',
 	      strokeOpacity: 0.8,

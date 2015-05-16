@@ -8,7 +8,7 @@
  * Controller of the dropeatApp
  */
 angular.module('dropeatApp')
-  .controller('DeliverCtrl', function ($scope, Map) {
+  .controller('DeliverCtrl', function ($scope, Map, deliveriesService) {
     $scope.place = {};
     
     $scope.search = function() {
@@ -17,10 +17,6 @@ angular.module('dropeatApp')
         .then(
             function(res) { // success
                 Map.addMarker(res);
-
-                Map.addRestaurantMarker($scope.restaurant.vapiano.lat, $scope.restaurant.vapiano.lon);
-                Map.addCircle($scope.restaurant.vapiano.lat, $scope.restaurant.vapiano.lon);
-
                 $scope.place.name = res.name;
                 $scope.place.lat = res.geometry.location.lat();
                 $scope.place.lng = res.geometry.location.lng();
@@ -35,12 +31,24 @@ angular.module('dropeatApp')
     $scope.send = function() {
         alert($scope.place.name + ' : ' + $scope.place.lat + ', ' + $scope.place.lng);    
     }
-    
-    Map.init();
+
+    $scope.getDatetime = function() {
+		return (new Date);
+	};
+
+    $scope.addDelivery = function(a) {
+    	deliveriesService.setProperty(a, $scope.getDatetime());
+    }
+
 
     $scope.restaurant = {
-      vapiano: {droneRadius: 2714856, lat: 57.70523710000001, lon: 11.96858629999997},
+      vapiano: {name: "Vapiano", droneRadius: 2714856, lat: 57.70523710000001, lon: 11.96858629999997},
     };
+    
+    Map.init();
+    Map.addRestaurantMarker($scope.restaurant.vapiano.lat, $scope.restaurant.vapiano.lon);
+    Map.addCircle($scope.restaurant.vapiano.lat, $scope.restaurant.vapiano.lon);
+    Map.initInfoWindow($scope.restaurant.vapiano.lat, $scope.restaurant.vapiano.lon);
     
     $scope.getRadius = function(num) {
       console.log(Math.sqrt(num) * 100);

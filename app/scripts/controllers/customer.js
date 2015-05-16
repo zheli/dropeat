@@ -8,6 +8,6 @@
  * Controller of the dropeatApp
  */
 angular.module('dropeatApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('CustomerCtrl', function ($scope) {
     
   });
