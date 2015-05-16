@@ -13,7 +13,7 @@ angular.module('dropeatApp')
     this.init = function() {
         var options = {
             center: new google.maps.LatLng(57.70523710000001, 11.96858629999997),
-            zoom: 13,
+            zoom: 15,
             disableDefaultUI: true    
         }
         this.map = new google.maps.Map(
