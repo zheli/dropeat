@@ -10,41 +10,38 @@
 angular.module('dropeatApp')
   .controller('CustomerprogressCtrl', function ($scope, $http, apiService) {
   	$scope.ETA = 10;
-  	$scope.max = 200;
   	var i=0;
     $scope.deliveryStatus;
 
   	$scope.updateProgressBar = function() {
   	  $scope.stacked = [];
-      var statusMessages = ['ready to fly', 'on the way', 'arrived', 'returning', 'returned'];
+      var statusMessages = ['ready to fly', 'on the way', 'arrived', 'returning'];
 
       if ($scope.deliveryStatus == statusMessages[0]){
         i=1;
         console.log("id",i);
       }
       else if ($scope.deliveryStatus == statusMessages[1]) {
-        i=3;
+        i=2;
         console.log("id",i);
       }
       else if ($scope.deliveryStatus == statusMessages[2]) {
-        i=4;
+        i=3;
         console.log("id",i);
       }
       else if ($scope.deliveryStatus == statusMessages[3]) {
-        i=5;
+        i=4;
         console.log("id",i);
       }
-  	  var types = ['success', 'info', 'warning', 'warning', 'warning', 'success'];
-  	  var index=i;
+  	  var types = ['success', 'info', 'warning', 'success'];
 	      $scope.stacked.push({
-	        value: i*20,
-	        type: types[index]
+	        value: i*25,
+	        type: types[i-1]
 	      });
 	  //i=i+1;
   	};
 
     $scope.updateApi = function() {
-      console.log('asaaaaa');
       apiService.setProperty();
       setInterval(function() {
       $scope.deliveryStatus = apiService.getProperty();
@@ -57,7 +54,7 @@ angular.module('dropeatApp')
   		return i;
   	}
 
-	var text = ['Order confirmed', 'Waiting for restaurant', 'Food sent', 'Arrived at address', 'Delivered'];
+	var text = ['Order confirmed', 'Food sent', 'Arrived at address', 'Delivered'];
   	$scope.getText = function () {
   		return text[i-1];
   	}
