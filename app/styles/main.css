@@ -9,6 +9,10 @@ body {
   padding: 0;
 }
 
+.progress-bar {
+  height: 100px;
+}
+
 #map { 
     height: 250px;
     margin: 20px 0;

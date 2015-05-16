@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngMap',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ui.bootstrap'
   ])
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
       localStorageServiceProvider.setPrefix('ls');
@@ -31,6 +32,10 @@ angular
       .when('/customer', {
         templateUrl: 'views/customer.html',
         controller: 'CustomerCtrl'
+      })
+      .when('/customerprogress', {
+        templateUrl: 'views/customerprogress.html',
+        controller: 'CustomerprogressCtrl'
       })
       .when('/deliver', {
         templateUrl: 'views/deliver.html',
