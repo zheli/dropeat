@@ -33,10 +33,14 @@ angular.module('dropeatApp')
     }
 
     $scope.getDatetime = function() {
-		return (new Date);
+    	var time = new Date;
+    	var hh = time.getHours();
+		var mm = time.getMinutes();
+		return hh + ":" + mm;
 	};
 
     $scope.addDelivery = function(a) {
+
     	deliveriesService.setProperty(a, $scope.getDatetime());
     }
 
