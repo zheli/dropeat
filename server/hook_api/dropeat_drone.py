@@ -1,7 +1,7 @@
 import time
 from pyadrudino_serial import CommandManager
 
-duo_port = '/dev/cu.usbmodem142111'
+duo_port = '/dev/cu.usbmodem141111'
 release_degree = "80"
 hook_degree = "180"
 
@@ -9,6 +9,7 @@ hook_degree = "180"
 class DroneHook(object):
     droped = False
     cm = CommandManager(duo_port, 9600)
+    status = None
 
     def __init__(self):
         self.cm.send_cmd(hook_degree)
