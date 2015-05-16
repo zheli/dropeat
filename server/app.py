@@ -17,6 +17,7 @@ def drone_status():
         if (current_time - drone.timestamp).seconds > 5:
             drone.status = 'returned'
             drone.reset()
+            drone.status = 'ready to fly'
     return drone.status
 
 @app.route('/shop_owner', methods=['GET'])
