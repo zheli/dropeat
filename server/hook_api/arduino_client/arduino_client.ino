@@ -11,9 +11,9 @@ void setup() {
     ; // wait for serial port to connect. Needed for Leonardo only
   }  
   mainServo.attach(7);
-  mainServo.write(180);
-  delay(30);
   mainServo.write(80);
+  delay(30);
+  mainServo.write(180);
   delay(30);
 }
 
