@@ -39,7 +39,6 @@ angular.module('dropeatApp')
       }
       var types = ['success', 'info', 'warning', 'warning', 'warning', 'success'];
       var index=i;
-<<<<<<< HEAD
       $scope.stacked.push({
         value: i*20,
         type: types[index]
