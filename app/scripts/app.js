@@ -37,6 +37,10 @@ angular
         templateUrl: 'views/customerprogress.html',
         controller: 'CustomerprogressCtrl'
       })
+      .when('/shopprogress', {
+        templateUrl: 'views/shopprogress.html',
+        controller: 'ShopprogressCtrl'
+      })
       .when('/deliver', {
         templateUrl: 'views/deliver.html',
         controller: 'DeliverCtrl'

@@ -1,0 +1,10 @@
+<h1>Delivery status for shop owner</h1>
+
+<progress><bar ng-repeat="bar in stacked track by $index" value="bar.value" max='100' type="{{bar.type}}"><span ng-hide="bar.value < 5">{{getText()}}</span></bar></progress>
+
+</div>
+<h5>Estimated time to arrival: {{ETA}} minutes.</h5>
+
+<button class="btn btn-sm btn-primary" type="button" ng-show="getIndex()-1 == '1' || getIndex()-1 == '2' || getIndex()-1 == '3'" ng-click="nextIndex()">Continue</button></h3>
+
+<button class="btn btn-primary" ng-show="getIndex()-1 == '4'" ng-click="dropFood()">Release food</button>
